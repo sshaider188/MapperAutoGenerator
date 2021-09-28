@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="AutoGeneratorMapper:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="10c45869-6945-4533-9fad-765e0811f2c2" name="Default Changelist" comment="" />
+    <list default="true" id="10c45869-6945-4533-9fad-765e0811f2c2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/equivant/jw2/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/equivant/jw2/Generator.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,7 +38,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1558" />
+          <entry key="JAVA" value="1612" />
           <entry key="Manifest" value="1" />
           <entry key="XML" value="9" />
         </counts>
@@ -52,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/equivant/jw2/Generator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1451">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="229">
+              <caret line="106" column="108" selection-start-line="106" selection-start-column="108" selection-end-line="106" selection-end-column="108" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,7 +152,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1632828169884" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1632835840985" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -166,7 +173,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JAR Application.AutoGeneratorMapper_jar.jar">
+  <component name="RunManager" selected="Application.Generator">
     <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.equivant.jw2.Generator" />
@@ -197,8 +204,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.AutoGeneratorMapper_jar.jar" />
         <item itemvalue="Application.Generator" />
+        <item itemvalue="JAR Application.AutoGeneratorMapper_jar.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -213,12 +220,12 @@
       <option name="presentableId" value="Default" />
       <updated>1632778460515</updated>
       <workItem from="1632778468718" duration="21389000" />
-      <workItem from="1632825537761" duration="2988000" />
+      <workItem from="1632825537761" duration="4647000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24377000" />
+    <option name="totallyTimeSpent" value="26036000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -342,8 +349,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/equivant/jw2/Generator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1451">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        <state relative-caret-position="229">
+          <caret line="106" column="108" selection-start-line="106" selection-start-column="108" selection-end-line="106" selection-end-column="108" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

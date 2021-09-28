@@ -24,7 +24,7 @@ public class Generator {
         try {
 
             JCodeModel codeModel = new JCodeModel();
-            JDefinedClass definedClass = codeModel._class("com.cjs.jworks.domain.mapper."+args[1]);
+            JDefinedClass definedClass = codeModel._class(JMod.PUBLIC |JMod.ABSTRACT,"com.cjs.jworks.domain.mapper."+args[1],ClassType.CLASS);
             definedClass._extends(codeModel.ref("com.cjs.jworks.domain.mapper.BaseMapper"));
 
             definedClass.annotate(codeModel.ref("org.mapstruct.Mapper"))
@@ -81,10 +81,12 @@ public class Generator {
                     String type = element.getAttribute("type");
                     String customConvertor = element.getAttribute("custom-converter");
                     String converterDependencyfield = "";
+                    String outterClass = "";
                     String staticInnerClass = "";
                     if (customConvertor != null && !customConvertor.isEmpty() && customConvertor.contains("$")){
                         converterDependencyfield = customConvertor.substring(customConvertor.indexOf("$")+1,customConvertor.length());
                         converterDependencyfield = converterDependencyfield.substring(0,1).toLowerCase().concat(converterDependencyfield.substring(1));
+                        outterClass = customConvertor.substring(0,customConvertor.indexOf('$'));
                         staticInnerClass = customConvertor.substring(customConvertor.lastIndexOf('.')+1,customConvertor.length());
                         staticInnerClass = staticInnerClass.replace('$','.');
                     }
@@ -102,7 +104,7 @@ public class Generator {
                                 .param("expression", JExpr.direct("/*TODO*/"));
 
                         if (customConvertor.contains("$")) {
-                            JFieldVar field = definedClass.field(JMod.PROTECTED, codeModel.directClass(staticInnerClass), converterDependencyfield);
+                            JFieldVar field = definedClass.field(JMod.PROTECTED, codeModel.ref(outterClass), converterDependencyfield);
                             field.annotate(codeModel.ref("org.springframework.beans.factory.annotation.Autowired"));
                         }
                     }
