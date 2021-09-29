@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,15 +44,16 @@ public class Generator {
     public static final String METHOD_TO_ENTITY = "toEntity";
 
     public static List<String> classLevelMappers = Arrays.asList("BooleanColumnMapper",
-                                                                    "PrimaryKeyMapper");
+            "PrimaryKeyMapper");
 
     public static List<String> commonConverters = Arrays.asList("BooleanColumnConverter",
-                                                                "PrimaryKeyConverter",
-                                                                "CodeTableConverter");
+            "PrimaryKeyConverter",
+            "CodeTableConverter",
+            "CodeTableLabelConverter");
 
 
     public static void main(String[] args) {
-
+        List<String> converterCreatedFieldsList = new ArrayList<String>();
         //Three command line arguments required
         //1-Project location for example; D:\MyDrive\Projects\jworks\ (last slash is important)
         //2-Name of file that needs to be created i.e. mapper file which we are going to write
@@ -67,7 +69,7 @@ public class Generator {
         else{
             projectLocation = args[0];
             if(projectLocation.charAt(projectLocation.length()-1) != '\\'){
-            projectLocation +="\\";
+                projectLocation +="\\";
             }
         }
 
@@ -175,16 +177,23 @@ public class Generator {
                             staticInnerClass = staticInnerClass.replace('$', '.');
 
                             //add converter dependency static inner converter not created correctly , needs tweaking afterwards
-                            JFieldVar field = definedClass.field(JMod.PROTECTED, codeModel.ref(outterClass), converterDependencyfield);
-                            field.annotate(codeModel.ref(ANNOTATION_SPRING_AUTOWIRED));
+                            if(!converterCreatedFieldsList.contains(converterDependencyfield)){
+                                JFieldVar field = definedClass.field(JMod.PROTECTED, codeModel.ref(outterClass), converterDependencyfield);
+                                field.annotate(codeModel.ref(ANNOTATION_SPRING_AUTOWIRED));
+                                converterCreatedFieldsList.add(converterDependencyfield);
+                            }
                         }
                         else{
                             converterDependencyfield = customConvertor.substring(customConvertor.lastIndexOf('.') + 1, customConvertor.length());
+                            converterDependencyfield = converterDependencyfield.substring(0, 1).toLowerCase().concat(converterDependencyfield.substring(1));
 
-                            if(!commonConverters.contains(converterDependencyfield)){
+                            //For common converters we dont need any dependency variable to be created so we have negation condition
+                            //Also if any converter is dependency is created once then  we remember it and not created it next time
+                            if(!commonConverters.contains(converterDependencyfield) && !converterCreatedFieldsList.contains(converterDependencyfield)){
                                 //add converter dependency only if its not a common converter but a specialized one
                                 JFieldVar field = definedClass.field(JMod.PROTECTED, codeModel.ref(customConvertor), converterDependencyfield);
                                 field.annotate(codeModel.ref(ANNOTATION_SPRING_AUTOWIRED));
+                                converterCreatedFieldsList.add(converterDependencyfield);
                             }
                         }
                     }
